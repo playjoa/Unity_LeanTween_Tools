@@ -34,14 +34,14 @@ public class LeanTweanerListAnimator : MonoBehaviour
         if (typeAnim == LeanTweenType.animationCurve)
         {
             for (int i = 0; i < crds.Length; i++)
-                AnimateCard(crds[i].gameObject, delayOfNextCard * i, typeAnim);
+                AnimateCard(crds[i].gameObject, delayOfNextCard * i, animCurve);
 
             return;
         }
 
         for (int i = 0; i < crds.Length; i++)
         {
-            AnimateCard(crds[i].gameObject, delayOfNextCard * i, animCurve);
+            AnimateCard(crds[i].gameObject, delayOfNextCard * i, typeAnim);
         }
     }
 
