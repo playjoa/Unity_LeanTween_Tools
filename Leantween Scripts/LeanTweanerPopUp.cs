@@ -8,16 +8,28 @@ public class LeanTweanerPopUp : MonoBehaviour
     [SerializeField]
     private float delayOfAnim = 0.05f, durationOfAnim = 0.3f, delayToClosePopUp = 3f;
 
+    private Vector3 originalLocalScale;
+
+    private void Awake()
+    {
+        SaveOriginalLocalScale();
+    }
+
     private void OnEnable()
     {
         AnimatePopUp();
+    }
+
+    void SaveOriginalLocalScale()
+    {
+        originalLocalScale = transform.localScale;
     }
 
     void AnimatePopUp() 
     {
         SetSizeToZero();
 
-        LeanTween.scale(gameObject, Vector3.one, durationOfAnim).setDelay(delayOfAnim).setEase(typePopUpAnim);
+        LeanTween.scale(gameObject, originalLocalScale, durationOfAnim).setDelay(delayOfAnim).setEase(typePopUpAnim);
         Invoke("CloseAnim", delayToClosePopUp);
     }
 
