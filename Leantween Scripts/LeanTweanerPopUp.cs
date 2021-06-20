@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class LeanTweanerPopUp : MonoBehaviour
 {
@@ -7,6 +8,12 @@ public class LeanTweanerPopUp : MonoBehaviour
 
     [SerializeField]
     private float delayOfAnim = 0.05f, durationOfAnim = 0.3f, delayToClosePopUp = 3f;
+
+    [SerializeField]
+    private UnityEvent OnPopUpOpened;
+
+    [SerializeField]
+    private UnityEvent OnPopUpClosed;
 
     private Vector3 originalLocalScale;
 
@@ -29,7 +36,7 @@ public class LeanTweanerPopUp : MonoBehaviour
     {
         SetSizeToZero();
 
-        LeanTween.scale(gameObject, originalLocalScale, durationOfAnim).setDelay(delayOfAnim).setEase(typePopUpAnim);
+        LeanTween.scale(gameObject, originalLocalScale, durationOfAnim).setDelay(delayOfAnim).setEase(typePopUpAnim).setOnComplete(HandlePopUpOpened);
         Invoke("CloseAnim", delayToClosePopUp);
     }
 
@@ -40,11 +47,17 @@ public class LeanTweanerPopUp : MonoBehaviour
 
     void CloseAnim()
     {
-        LeanTween.scale(gameObject, Vector3.zero, durationOfAnim).setDelay(delayOfAnim).setEase(typeCloseAnim).setOnComplete(DeactivatePopUp);
+        LeanTween.scale(gameObject, Vector3.zero, durationOfAnim).setDelay(delayOfAnim).setEase(typeCloseAnim).setOnComplete(HandlePopUpClosed);
     }
 
-    void DeactivatePopUp() 
+    void HandlePopUpOpened()
     {
+        OnPopUpOpened?.Invoke();
+    }
+
+    void HandlePopUpClosed() 
+    {
+        OnPopUpClosed?.Invoke();
         gameObject.SetActive(false);
     }
 }
