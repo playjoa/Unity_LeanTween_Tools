@@ -32,4 +32,8 @@ LeanTween was developed by <a href='https://assetstore.unity.com/publishers/1487
 
 ## LeanTweanerPopUp.cs
 - Similar to TweenerAnimation, will Open the desired card (Good for notification Pop Ups or DamageTexts) and close after a desired time!
+
+### Example: <br>
+![](Screenshots/PopUp.png)
 - Set values to your liking and done, the pop up will autodeactivate after close animation!
+- OnOpenedPopUp and OnClosedPopUp events.
