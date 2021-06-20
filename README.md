@@ -1,14 +1,12 @@
 # Unity_LeanTween_AnimationScripts
-Some of usefull scripts to add in your UI's for nice animations!
-
 Make your UI pop with easy to implement animations!
 
-LeanTween was developed by <a href='https://assetstore.unity.com/publishers/1487'>Dented Pixel</a>, show hiw some love on the Asset Store :D!
+LeanTween was developed by <a href='https://assetstore.unity.com/publishers/1487'>Dented Pixel</a>, show hiw some love on the Asset Store :D
 
 /LeanTween (Folder): Contains the base framework for lean tween! You can also get it for free from the Unity Asset Store <a href='https://assetstore.unity.com/packages/tools/animation/leantween-3595'>HERE</a>! <br>
 /Leantween Scripts (Folder): Contains the 3 scripts to use in your UI, or other areas that you may find it useful in your project :D <br>
 
-# How it can look!
+# Make your UI Pop!
 ![](Screenshots/Demo.gif)
 
 
@@ -21,7 +19,7 @@ LeanTween was developed by <a href='https://assetstore.unity.com/publishers/1487
 - You can set how long the delay to start animating the childs, delay between childs animation and the duration of the animation!
 
 ## TweenerAnimation.cs
-- Attach to an object such as a card that holds some info (MeesageBoxes or entire screens), you can also set UnityEvents  
+- Attach to an object such as a card that holds some info (MeesageBoxes or entire screens), you can also set UnityEvents to happen after close animation!  
 
 ### Example: <br>
 ![](Screenshots/TweenerAnimation.png)
