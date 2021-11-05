@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace TweenerSystem
 {
-    
     public class LeanTweenerUISlideAnimation : MonoBehaviour
     {
         [Header("Slide In Config")] 
