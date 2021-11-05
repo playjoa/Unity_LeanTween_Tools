@@ -7,9 +7,9 @@ namespace TweenerSystem
     
     public class LeanTweenerUISlideAnimation : MonoBehaviour
     {
-        [Header("Slide In Config")]
-        [SerializeField] private TweenSlideAnimationData slideAnimationData = new TweenSlideAnimationData(SlideDirection.Up);
-        [SerializeField] private TweenSlideAnimationData slideOutData = new TweenSlideAnimationData(SlideDirection.Down);
+        [Header("Slide In Config")] 
+        [SerializeField] private TweenSlideAnimationData slideAnimationData;
+        [SerializeField] private TweenSlideAnimationData slideOutData;
 
         [HideInInspector] 
         [SerializeField] private RectTransform objectRect;
