@@ -12,6 +12,11 @@ namespace TweenerSystem.Data
         [SerializeField] private float animDuration = 0.5f;
         [SerializeField] private UnityEvent onAnimationComplete;
 
+        public TweenAnimationData(LeanTweenType leanTweenType)
+        {
+            easeType = leanTweenType;
+        }
+        
         public LeanTweenType EaseType => easeType;
         public float Delay => animDelay;
         public float Duration => animDuration;

@@ -6,9 +6,9 @@ namespace TweenerSystem
     public class LeanTweenerAnimation : MonoBehaviour
     {
         [Header("Open Animation Config.")]
-        [SerializeField] private TweenAnimationData openAnimationData;
+        [SerializeField] private TweenAnimationData openAnimationData = new TweenAnimationData(LeanTweenType.easeOutBack);
         [Header("Close Animation Config.")]
-        [SerializeField] private TweenAnimationData closeAnimationData;
+        [SerializeField] private TweenAnimationData closeAnimationData= new TweenAnimationData(LeanTweenType.easeInBack);
 
         private Vector3 initialSize;
 

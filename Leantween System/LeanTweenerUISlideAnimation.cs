@@ -4,11 +4,12 @@ using UnityEngine;
 
 namespace TweenerSystem
 {
+    
     public class LeanTweenerUISlideAnimation : MonoBehaviour
     {
         [Header("Slide In Config")] 
-        [SerializeField] private TweenSlideAnimationData slideAnimationData;
-        [SerializeField] private TweenSlideAnimationData slideOutData;
+        [SerializeField] private TweenSlideAnimationData slideAnimationData = new TweenSlideAnimationData(LeanTweenType.easeOutBack);
+        [SerializeField] private TweenSlideAnimationData slideOutData = new TweenSlideAnimationData(LeanTweenType.easeInBack);
 
         [HideInInspector] 
         [SerializeField] private RectTransform objectRect;

@@ -19,6 +19,11 @@ namespace TweenerSystem.Data
             this.slideDirection = slideDirection;
         }
         
+        public TweenSlideAnimationData(LeanTweenType leanTweenType)
+        {
+            easeType = leanTweenType;
+        }
+        
         public SlideDirection Direction => slideDirection;
         public LeanTweenType EaseType => easeType;
         public float Delay => slideDelay;
