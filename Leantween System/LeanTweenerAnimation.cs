@@ -22,7 +22,7 @@ namespace TweenerSystem
             OpenAnimation();
         }
 
-        private void OpenAnimation()
+        public void OpenAnimation()
         {
             if (openAnimationData.EaseType == LeanTweenType.notUsed) return;
 

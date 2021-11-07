@@ -1,69 +1,106 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 
 namespace TweenerSystem
 {
     public class LeanTweenerListAnimator : MonoBehaviour
     {
-        [SerializeField] private LeanTweenType typeAnim = LeanTweenType.easeOutBack;
-
-        [SerializeField] private AnimationCurve animCurve;
+        [Header("Animation Config")]
+        [SerializeField] private LeanTweenType easeInType = LeanTweenType.easeOutBack;
+        [SerializeField] private LeanTweenType easeOutType = LeanTweenType.easeInBack;
 
         [SerializeField] private float delayOfAnim = 0.05f;
         [SerializeField] private float durationOfAnim = 0.3f;
         [SerializeField] private float delayOfNextCard = 0.05f;
+        
+        [Header("In Animation Callback")]
+        [SerializeField] private UnityEvent onInAnimationComplete;
+        [Header("Out Animation Callback")]
+        [SerializeField] private UnityEvent onOutAnimationComplete;
+        
+        [Header("Targets to animate")]
+        [SerializeField] private List<GameObject> transformChildrenToAnimate  = new List<GameObject>();
+
+        private bool HasTargetsToAnimate => transformChildrenToAnimate.Count > 0;
+        
+        private void OnValidate()
+        {
+            transformChildrenToAnimate = GetChildren();
+        }
 
         private void OnEnable()
         {
-            AnimateList(GetTransformsChild());
+            AnimateListIn();
         }
 
-        private Transform[] GetTransformsChild()
+        private List<GameObject>GetChildren()
         {
-            var childs = new Transform[transform.childCount];
+            var allChildren = new List<GameObject>();
+            
+            var children = transform.childCount;
+            for (var i = 0; i < children; ++i)
+                allChildren.Add(transform.GetChild(i).gameObject);
 
-            for (var i = 0; i < childs.Length; i++)
-                childs[i] = transform.GetChild(i);
-
-            return childs;
+            return allChildren;
         }
 
-        private void AnimateList(Transform[] crds)
+        public void AnimateListIn()
         {
-            if (crds == null)
-                return;
+            if (!HasTargetsToAnimate) return;
+            
+            for (var i = 0; i < transformChildrenToAnimate.Count; i++)
+                AnimateCardIn(transformChildrenToAnimate[i], delayOfNextCard * i, easeInType, 
+                    i == transformChildrenToAnimate.Count -1);
+        }
 
-            if (typeAnim == LeanTweenType.animationCurve)
+        public void AnimateListOut()
+        {            
+            if (!HasTargetsToAnimate) return;
+            
+            for (var i = transformChildrenToAnimate.Count - 1; i >= 0; i--)
+                AnimateCardOut(transformChildrenToAnimate[i], delayOfNextCard * i, easeInType, i == 0);
+        }
+
+        private void AnimateCardIn(GameObject currentCard, float animationDelay, LeanTweenType typeAnim, bool attachOnComplete)
+        {
+            CancelTween(currentCard);
+            currentCard.transform.localScale = Vector3.zero;
+
+            if (!attachOnComplete)
             {
-                for (var i = 0; i < crds.Length; i++)
-                    AnimateCard(crds[i].gameObject, delayOfNextCard * i, animCurve);
+                LeanTween.scale(currentCard, Vector3.one, durationOfAnim)
+                    .setDelay(delayOfAnim + animationDelay)
+                    .setEase(typeAnim);
+                return;
+            }
+            
+            LeanTween.scale(currentCard, Vector3.one, durationOfAnim)
+                .setDelay(delayOfAnim + animationDelay)
+                .setEase(typeAnim).setOnComplete(() => onInAnimationComplete?.Invoke());
+        }
+        
+        private void AnimateCardOut(GameObject currentCard, float animationDelay, LeanTweenType typeAnim,  bool attachOnComplete)
+        {
+            CancelTween(currentCard);
 
+            if (!attachOnComplete)
+            {
+                LeanTween.scale(currentCard, Vector3.zero, durationOfAnim)
+                    .setDelay(delayOfAnim + animationDelay)
+                    .setEase(typeAnim);
                 return;
             }
 
-            for (var i = 0; i < crds.Length; i++)
-                AnimateCard(crds[i].gameObject, delayOfNextCard * i, typeAnim);
+            LeanTween.scale(currentCard, Vector3.zero, durationOfAnim)
+                .setDelay(delayOfAnim + animationDelay)
+                .setEase(typeAnim).setOnComplete(() => onOutAnimationComplete?.Invoke());
         }
 
-        private void AnimateCard(GameObject currentCard, float newDelayOfNextCard, LeanTweenType typeAnim)
+        private void CancelTween(GameObject gameObject)
         {
-            if (LeanTween.isTweening(currentCard))
-                LeanTween.cancel(currentCard);
-
-            currentCard.transform.localScale = Vector3.zero;
-            LeanTween.scale(currentCard, Vector3.one, durationOfAnim)
-                .setDelay(delayOfAnim + newDelayOfNextCard)
-                .setEase(typeAnim);
-        }
-
-        private void AnimateCard(GameObject currentCard, float newDelayOfNextCard, AnimationCurve typeAnim)
-        {
-            if (LeanTween.isTweening(currentCard))
-                LeanTween.cancel(currentCard);
-
-            currentCard.transform.localScale = Vector3.zero;
-            LeanTween.scale(currentCard, Vector3.one, durationOfAnim)
-                .setDelay(delayOfAnim + newDelayOfNextCard)
-                .setEase(typeAnim);
+            if (LeanTween.isTweening(gameObject))
+                LeanTween.cancel(gameObject);
         }
     }
 }

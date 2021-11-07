@@ -45,7 +45,7 @@ namespace TweenerSystem
             SlideIn();
         }
 
-        private void SlideIn()
+        public void SlideIn()
         {
             objectRect.localPosition = targetDirections[slideAnimationData.Direction];
             
