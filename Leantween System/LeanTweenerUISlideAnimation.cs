@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using TweenerSystem.Data;
 using UnityEngine;
+using Utils.Tweens.Data;
 
-namespace TweenerSystem
+namespace Utils.Tweens
 {
     
     public class LeanTweenerUISlideAnimation : MonoBehaviour

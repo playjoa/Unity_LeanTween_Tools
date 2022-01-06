@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace TweenerSystem
+namespace Utils.Tweens
 {
     public class LeanTweenerPopUp : MonoBehaviour
     {
-        [Header("Open PopUp Config.")]
+        [Header("Open PopUp Config:")]
         [SerializeField] private LeanTweenType typePopUpAnim = LeanTweenType.easeOutBack;
         [SerializeField] private float delayOfOpenAnim = 0.05f;
         [SerializeField] private float durationOfOpenAnim = 0.3f;
         [SerializeField] private UnityEvent OnPopUpOpened;
         
-        [Header("Close PopUp Config.")]
+        [Header("Close PopUp Config:")]
         [SerializeField] private LeanTweenType typeCloseAnim = LeanTweenType.easeInOutBack;
         [SerializeField] private float delayToClosePopUp = 3f;
         [SerializeField] private UnityEvent OnPopUpClosed;

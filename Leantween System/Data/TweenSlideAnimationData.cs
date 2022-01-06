@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace TweenerSystem.Data
+namespace Utils.Tweens.Data
 {
     [Serializable]
     public class TweenSlideAnimationData

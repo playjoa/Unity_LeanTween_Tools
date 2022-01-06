@@ -1,14 +1,15 @@
-﻿using TweenerSystem.Data;
-using UnityEngine;
+﻿using UnityEngine;
+using Utils.Tweens.Data;
 
-namespace TweenerSystem
+namespace Utils.Tweens
 {
     public class LeanTweenerAnimation : MonoBehaviour
     {
-        [Header("Open Animation Config.")]
+        [Header("Open Animation Config:")]
         [SerializeField] private TweenAnimationData openAnimationData = new TweenAnimationData(LeanTweenType.easeOutBack);
-        [Header("Close Animation Config.")]
-        [SerializeField] private TweenAnimationData closeAnimationData= new TweenAnimationData(LeanTweenType.easeInBack);
+
+        [Header("Close Animation Config:")] 
+        [SerializeField] private TweenAnimationData closeAnimationData = new TweenAnimationData(LeanTweenType.easeInBack);
 
         private Vector3 initialSize;
 
@@ -25,7 +26,7 @@ namespace TweenerSystem
         public void OpenAnimation()
         {
             if (openAnimationData.EaseType == LeanTweenType.notUsed) return;
-
+            
             transform.localScale = Vector3.zero;
             LeanTween.scale(gameObject, initialSize, openAnimationData.Duration)
                 .setDelay(openAnimationData.Delay).setEase(openAnimationData.EaseType)
@@ -34,8 +35,7 @@ namespace TweenerSystem
 
         public void CloseAnimation()
         {
-            if (closeAnimationData.EaseType == LeanTweenType.notUsed)
-                return;
+            if (closeAnimationData.EaseType == LeanTweenType.notUsed) return;
 
             LeanTween.scale(gameObject, Vector3.zero, closeAnimationData.Duration)
                 .setDelay(closeAnimationData.Delay).setEase(closeAnimationData.EaseType)
