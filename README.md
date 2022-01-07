@@ -4,7 +4,7 @@ Make your UI pop with easy to implement animations!
 LeanTween was developed by <a href='https://assetstore.unity.com/publishers/1487'>Dented Pixel</a>, show hiw some love on the Asset Store :D
 
 /LeanTween (Folder): Contains the base framework for lean tween! You can also get it for free from the Unity Asset Store <a href='https://assetstore.unity.com/packages/tools/animation/leantween-3595'>HERE</a>! <br>
-/Leantween Scripts (Folder): Contains the 3 scripts to use in your UI, or other areas that you may find it useful in your project :D <br>
+/Leantween Scripts (Folder): Contains scripts to use in your UI, or other areas that you may find it useful in your project :D <br>
 
 # Make your UI Pop!
 ![](Screenshots/Demo.gif)
