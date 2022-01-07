@@ -1,4 +1,4 @@
-# Unity_LeanTween_UI_AnimationScripts
+# Unity_LeanTween_Tools
 Make your UI pop with easy to implement animations!
 
 LeanTween was developed by <a href='https://assetstore.unity.com/publishers/1487'>Dented Pixel</a>, show hiw some love on the Asset Store :D
